@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,11 +17,13 @@ import mz.co.aliriomambo.shopifyaliriomambowintership.data.model.Tag;
 public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
     private List<Tag> tagList;
     private Context context;
+    private TagItemClick tagItemClick;
 
 
-    public TagsAdapter(Context context, List<Tag> tagList) {
+    public TagsAdapter(Context context, List<Tag> tagList, TagItemClick tagItemClick) {
         this.context = context;
         this.tagList = tagList;
+        this.tagItemClick = tagItemClick;
     }
 
     @NonNull
@@ -37,6 +40,13 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
 
         holder.txtTagTitle.setText(tag.getTitle());
 
+        holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
         //TODO Product Number
     }
 
@@ -47,6 +57,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
 
     public class TagsHolder extends RecyclerView.ViewHolder {
         private TextView txtTagTitle;
+        private LinearLayout linearLayout;
         private TextView txtProductCount;
 
 
@@ -54,6 +65,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
             super(itemView);
             txtTagTitle = itemView.findViewById(R.id.title_item_tag);
             txtProductCount = itemView.findViewById(R.id.num_products_item_tag);
+            linearLayout = itemView.findViewById(R.id.linear_layout_item_tags);
         }
     }
 }

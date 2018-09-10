@@ -27,7 +27,7 @@ public class TagsActivity extends AppCompatActivity implements TagItemClick {
         TagsViewModel tagsViewModel = ViewModelProviders.of(this).get(TagsViewModel.class);
 
         final List<Tag> tagList = new ArrayList<Tag>();
-        final TagsAdapter tagsAdapter = new TagsAdapter(this, tagList);
+        final TagsAdapter tagsAdapter = new TagsAdapter(this, tagList, this);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
