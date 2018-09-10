@@ -11,16 +11,16 @@ public class Tag {
     @NonNull
     private String title;
 
+    public Tag(@NonNull String title) {
+        this.title = title;
+    }
+
     @NonNull
     public String getTitle() {
         return title;
     }
 
     public void setTitle(@NonNull String title) {
-        this.title = title;
-    }
-
-    public Tag(@NonNull String title) {
         this.title = title;
     }
 

@@ -27,10 +27,11 @@ public class Repository {
     public Repository(Context context) {
         this.context = context;
         appDatabase = AppDatabase.getInstance(context);
+        synchronize();
     }
 
 
-    public void synchronize() {
+    private void synchronize() {
         Log.d("Repository", "Synchronize");
         final ProductService productService = ShopifyApi.getProductService();
         Call<Products> getProducts = productService.loadProducts();
@@ -38,14 +39,12 @@ public class Repository {
         getProducts.enqueue(new Callback<Products>() {
             @Override
             public void onResponse(Call<Products> call, Response<Products> response) {
-                Log.d("Repository", "onResponse before Loop");
                 for (Product product : response.body().getProducts()) {
                     product.setImagePath(product.getImage().getSrc());
                     product.setTotalInventory(getTotalAvailableInventoryByProduct(product));
                     ArrayList<Tag> tagsList = getTagsByProduct(product);
                     appDatabase.getProductDao().insert(product);
                     appDatabase.getTagDao().insertAll(tagsList);
-                    Log.d("Tag", tagsList.toString());
                 }
             }
 

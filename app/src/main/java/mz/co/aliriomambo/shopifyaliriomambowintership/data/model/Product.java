@@ -1,4 +1,3 @@
-
 package mz.co.aliriomambo.shopifyaliriomambowintership.data.model;
 
 import android.arch.persistence.room.Entity;
