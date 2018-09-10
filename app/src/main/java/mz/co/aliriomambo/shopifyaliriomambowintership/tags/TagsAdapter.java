@@ -36,14 +36,14 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TagsHolder holder, int position) {
-        Tag tag = tagList.get(position);
+        final Tag tag = tagList.get(position);
 
         holder.txtTagTitle.setText(tag.getTitle());
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                tagItemClick.onclick(tag.getTitle());
             }
         });
 
