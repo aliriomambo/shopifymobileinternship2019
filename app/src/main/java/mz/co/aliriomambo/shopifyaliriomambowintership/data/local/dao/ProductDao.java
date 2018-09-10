@@ -30,4 +30,8 @@ public interface ProductDao {
     @Query("SELECT * FROM product")
     LiveData<List<Product>> getAllProductsLiveData();
 
+    @Query("SELECT * FROM product WHERE tags LIKE '%' || :tag || '%'")
+    LiveData<List<Product>> getAllProductsByTag(String tag);
+
+
 }

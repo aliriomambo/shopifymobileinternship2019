@@ -83,5 +83,9 @@ public class Repository {
         return appDatabase.getTagDao().getAllTagsLiveData();
     }
 
+    public LiveData<List<Product>> getAllProductsByTag(String tag) {
+        return appDatabase.getProductDao().getAllProductsByTag(tag);
+    }
+
 
 }

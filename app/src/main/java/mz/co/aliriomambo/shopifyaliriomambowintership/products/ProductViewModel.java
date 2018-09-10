@@ -22,4 +22,8 @@ public class ProductViewModel extends AndroidViewModel {
         return repository.getAllProductsLiveData();
     }
 
+    public LiveData<List<Product>> getProductsByTagLiveData(String tag) {
+        return repository.getAllProductsByTag(tag);
+    }
+
 }

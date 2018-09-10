@@ -20,6 +20,8 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
+
+        String tag = getIntent().getStringExtra("TAG");
         RecyclerView recyclerView = findViewById(R.id.recycler_view_products_activity);
 
         ProductViewModel productViewModel = ViewModelProviders.of(this).get(ProductViewModel.class);
@@ -32,7 +34,7 @@ public class ProductActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(productsAdapter);
 
-        productViewModel.getProductsLiveData().observe(this, new Observer<List<Product>>() {
+        productViewModel.getProductsByTagLiveData(tag).observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(@Nullable List<Product> products) {
                 productList.clear();
