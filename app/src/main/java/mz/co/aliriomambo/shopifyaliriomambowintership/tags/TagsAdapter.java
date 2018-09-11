@@ -47,7 +47,6 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
             }
         });
 
-        //TODO Product Number
     }
 
     @Override
@@ -58,13 +57,11 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
     public class TagsHolder extends RecyclerView.ViewHolder {
         private TextView txtTagTitle;
         private LinearLayout linearLayout;
-        private TextView txtProductCount;
 
 
         public TagsHolder(View itemView) {
             super(itemView);
             txtTagTitle = itemView.findViewById(R.id.title_item_tag);
-            txtProductCount = itemView.findViewById(R.id.num_products_item_tag);
             linearLayout = itemView.findViewById(R.id.linear_layout_item_tags);
         }
     }
