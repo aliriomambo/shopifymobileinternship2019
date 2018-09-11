@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingVertical="4dp">
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp">
 
     <TextView
         android:id="@+id/title_item_tag"
@@ -12,7 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_bg_rectangle_curve"
         android:fontFamily="@font/lato_light"
-        android:paddingHorizontal="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:text="Tag"
         android:textColor="@android:color/white"
         android:textSize="12sp" />

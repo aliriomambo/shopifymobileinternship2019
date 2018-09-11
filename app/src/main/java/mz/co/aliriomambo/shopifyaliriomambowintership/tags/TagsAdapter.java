@@ -3,19 +3,24 @@ package mz.co.aliriomambo.shopifyaliriomambowintership.tags;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import mz.co.aliriomambo.shopifyaliriomambowintership.R;
 import mz.co.aliriomambo.shopifyaliriomambowintership.data.model.Tag;
 
-public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
+public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> implements Filterable {
     private List<Tag> tagList;
+    private List<Tag> tagListFiltered;
     private Context context;
     private TagItemClick tagItemClick;
 
@@ -24,6 +29,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
         this.context = context;
         this.tagList = tagList;
         this.tagItemClick = tagItemClick;
+        this.tagListFiltered = tagList;
     }
 
     @NonNull
@@ -36,7 +42,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull TagsHolder holder, int position) {
-        final Tag tag = tagList.get(position);
+        final Tag tag = tagListFiltered.get(position);
 
         holder.txtTagTitle.setText(tag.getTitle());
 
@@ -51,7 +57,43 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> {
 
     @Override
     public int getItemCount() {
-        return tagList.size();
+        return tagListFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    tagListFiltered = tagList;
+                } else {
+
+                    List<Tag> filteredList = new ArrayList<>();
+                    for (Tag row : tagList) {
+                        if (row.getTitle().toLowerCase().contains(charString.toLowerCase())) {
+
+                            filteredList.add(row);
+                            Log.d("Filtered List", filteredList.toString());
+                        }
+                    }
+
+                    tagListFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = tagListFiltered;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                tagListFiltered = (ArrayList<Tag>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class TagsHolder extends RecyclerView.ViewHolder {

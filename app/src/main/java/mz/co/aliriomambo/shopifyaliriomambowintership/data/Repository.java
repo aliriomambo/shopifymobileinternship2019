@@ -68,9 +68,8 @@ public class Repository {
     private ArrayList<Tag> getTagsByProduct(Product product) {
         ArrayList<String> stringTag = new ArrayList<String>(Arrays.asList(product.getTags().split(",")));
         ArrayList<Tag> tagList = new ArrayList<Tag>();
-
         for (String string : stringTag) {
-            tagList.add(new Tag(string.trim()));
+            tagList.add(new Tag(string.trim().replaceAll("\\s+", "")));
         }
         return tagList;
     }
