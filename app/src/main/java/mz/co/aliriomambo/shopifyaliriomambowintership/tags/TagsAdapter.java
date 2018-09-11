@@ -1,9 +1,7 @@
 package mz.co.aliriomambo.shopifyaliriomambowintership.tags;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +19,10 @@ import mz.co.aliriomambo.shopifyaliriomambowintership.data.model.Tag;
 public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> implements Filterable {
     private List<Tag> tagList;
     private List<Tag> tagListFiltered;
-    private Context context;
     private TagItemClick tagItemClick;
 
 
-    public TagsAdapter(Context context, List<Tag> tagList, TagItemClick tagItemClick) {
-        this.context = context;
+    public TagsAdapter(List<Tag> tagList, TagItemClick tagItemClick) {
         this.tagList = tagList;
         this.tagItemClick = tagItemClick;
         this.tagListFiltered = tagList;
@@ -76,7 +72,6 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.TagsHolder> im
                         if (row.getTitle().toLowerCase().contains(charString.toLowerCase())) {
 
                             filteredList.add(row);
-                            Log.d("Filtered List", filteredList.toString());
                         }
                     }
 

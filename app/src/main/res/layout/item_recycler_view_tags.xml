@@ -11,13 +11,14 @@
         android:id="@+id/title_item_tag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/button_bg_rectangle_curve"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_rectangle_curve_borders"
         android:fontFamily="@font/lato_light"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Tag"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
 
 </LinearLayout>

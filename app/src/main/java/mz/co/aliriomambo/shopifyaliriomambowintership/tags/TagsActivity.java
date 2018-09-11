@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -23,7 +21,7 @@ import mz.co.aliriomambo.shopifyaliriomambowintership.data.model.Tag;
 import mz.co.aliriomambo.shopifyaliriomambowintership.products.ProductActivity;
 
 public class TagsActivity extends AppCompatActivity implements TagItemClick {
-    TagsAdapter tagsAdapter;
+    private TagsAdapter tagsAdapter;
 
     @Override
 
@@ -39,11 +37,8 @@ public class TagsActivity extends AppCompatActivity implements TagItemClick {
 
         TagsViewModel tagsViewModel = ViewModelProviders.of(this).get(TagsViewModel.class);
 
-        final List<Tag> tagList = new ArrayList<Tag>();
-        tagsAdapter = new TagsAdapter(this, tagList, this);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        final List<Tag> tagList = new ArrayList<>();
+        tagsAdapter = new TagsAdapter(tagList, this);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3, GridLayoutManager.VERTICAL, true);
         recyclerView.setLayoutManager(gridLayoutManager);
@@ -52,26 +47,28 @@ public class TagsActivity extends AppCompatActivity implements TagItemClick {
         tagsViewModel.getTagsLiveData().observe(this, new Observer<List<Tag>>() {
             @Override
             public void onChanged(@Nullable List<Tag> tagListLiveData) {
-                tagList.clear();
-                tagList.addAll(tagListLiveData);
-                tagsAdapter.notifyDataSetChanged();
+                if (tagListLiveData != null) {
+                    tagList.clear();
+                    tagList.addAll(tagListLiveData);
+                    tagsAdapter.notifyDataSetChanged();
+                }
             }
         });
     }
 
     @Override
-    public void onclick(String tag) {
+    public void onclick(String tagTitle) {
         Intent startProductActivity = new Intent(this, ProductActivity.class);
-        startProductActivity.putExtra("TAG", tag);
+        startProductActivity.putExtra("TAG", tagTitle);
         startActivity(startProductActivity);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        MenuItem mSearch = menu.findItem(R.id.action_search);
+        getMenuInflater().inflate(R.menu.tag_activity_menu, menu);
+        MenuItem menuItemSearch = menu.findItem(R.id.action_search);
 
-        SearchView mSearchView = (SearchView) mSearch.getActionView();
+        SearchView mSearchView = (SearchView) menuItemSearch.getActionView();
 
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

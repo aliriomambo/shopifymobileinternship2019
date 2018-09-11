@@ -21,11 +21,9 @@ import retrofit2.Response;
 
 public class Repository {
     private AppDatabase appDatabase;
-    private Context context;
 
 
     public Repository(Context context) {
-        this.context = context;
         appDatabase = AppDatabase.getInstance(context);
         synchronize();
     }

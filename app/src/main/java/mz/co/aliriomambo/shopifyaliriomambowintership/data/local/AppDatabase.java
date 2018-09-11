@@ -38,8 +38,5 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract TagDao getTagDao();
 
 
-    private void destroyInstance() {
-        appDatabaseSingleton = null;
-    }
 }
 
