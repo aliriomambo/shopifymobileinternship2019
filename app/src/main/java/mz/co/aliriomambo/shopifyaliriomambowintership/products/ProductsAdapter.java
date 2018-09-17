@@ -39,7 +39,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     public void onBindViewHolder(@NonNull ProductsHolder holder, int position) {
         Product product = productList.get(position);
         holder.productTitle.setText(product.getTitle());
-        holder.productQuantity.setText(String.valueOf(product.getTotalInventory()));
+        holder.productQuantity.setText(String.valueOf(product.getTotalInventory()) + " Products Available");
         Glide.with(context)
                 .load(product.getImagePath())
                 .into(holder.productImage);
