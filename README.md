@@ -1,9 +1,7 @@
 # Shopify Mobile Internship 2019 Challenge
 This is a project that was built as a result of my desire to work at Shopify as an Android Intern.
 
-Tags Screen
 ![Screenshot](https://github.com/aliriomambo/shopifymobileinternship2019/blob/master/Tags%20Screen.png)
-Product Screen
 ![Screenshot](https://github.com/aliriomambo/shopifymobileinternship2019/blob/master/Product%20Screen.png)
 
 
