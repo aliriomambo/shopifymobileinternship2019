@@ -1,6 +1,11 @@
 # Shopify Mobile Internship 2019 Challenge
 This is a project that was built as a result of my desire to work at Shopify as an Android Intern.
-![Screenshot](/master/Tags Screen.png)
+
+Tags Screen
+![Screenshot](https://github.com/aliriomambo/shopifymobileinternship2019/blob/master/Tags%20Screen.png)
+Product Screen
+![Screenshot](https://github.com/aliriomambo/shopifymobileinternship2019/blob/master/Product%20Screen.png)
+
 
 # Problem
 You're a successful Shopify merchant with many products in your store! You’d like an easier way of browsing your products from your phone based on the “tags” on each product. Create an Android app that displays a Tags List Page and a Products List Page. Your app will need to fetch data from the Shopify Products REST API.
