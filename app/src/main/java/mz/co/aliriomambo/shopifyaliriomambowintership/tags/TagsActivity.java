@@ -30,6 +30,8 @@ public class TagsActivity extends AppCompatActivity implements TagItemClick {
         setContentView(R.layout.activity_tags);
         Toolbar toolbar = findViewById(R.id.main_toolbar);
 
+        toolbar.setTitle("Tags");
+
         setSupportActionBar(toolbar);
 
 

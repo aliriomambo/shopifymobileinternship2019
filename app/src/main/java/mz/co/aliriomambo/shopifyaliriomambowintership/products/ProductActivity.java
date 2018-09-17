@@ -7,6 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,19 @@ public class ProductActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
+        Toolbar toolbar = findViewById(R.id.product_toolbar);
+
+        toolbar.setTitle("Products");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                finish();
+                return false;
+            }
+        });
+        setSupportActionBar(toolbar);
+
 
         String tag = getIntent().getStringExtra("TAG");
         RecyclerView recyclerView = findViewById(R.id.recycler_view_products_activity);
@@ -43,5 +58,17 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
